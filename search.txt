@@ -1,0 +1,24 @@
+#Используется язык программирования Python 3.9
+import csv
+with open("transactions.txt","r",encoding="utf-8") as file:
+
+    reader=csv.reader(file,delimiter="?")
+    ans=list(reader)[1:]
+
+code=input()
+while code!="none":
+    k=0
+    for i in ans:
+        userId=i[0]
+        transactionId=i[1]
+        transactionTime=i[2]
+        itemCode=i[3]
+        itemDescription=i[4]
+        numberOfItemsPurchased=i[5]
+        costPerItem=i[6]
+        if itemCode==code:
+            k=1
+            print(f"По вашему запросу: {itemCode} найден следующий вариант:\n{userId} {transactionId}  {transactionTime} {itemCode} {itemDescription} {numberOfItemsPurchased} {costPerItem}")
+    if k==0:
+        print("такого товара в базе нет")
+    code=input()
